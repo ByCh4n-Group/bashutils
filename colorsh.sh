@@ -73,20 +73,20 @@ BGIpurple='\033[0;105m'  # Purple
 BGIcyan='\033[0;106m'    # Cyan
 BGIwhite='\033[0;107m'   # White
 
-__randomcolor() {
+colorsh:random:1() {
     case ${1} in
-        simple)
-            echo -ne "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m"
-        ;;
         cool)
             local bold=$(( $RANDOM % 2 ))
             local code=$(( 30 + $RANDOM % 8 ))
             printf "%d;%d\n" $bold $code
         ;;
+        *)
+            echo -ne "\e[3$(( $RANDOM * 6 / 32767 + 1 ))m"
+        ;;
     esac
 }
 
-__lolbash() {
+colorsh:random:2() {
 	sentence="$*"
 	for (( i=0; i<${#sentence}; i++ )); do
 	    printf "\e[%sm%c" "$(random_colour)" "${sentence:i:1}"
@@ -94,4 +94,4 @@ __lolbash() {
 	echo -e '\e[0m'
 }
 
-# lazypwny751 - 09-09-2021
+# lazypwny751 - 10-01-2022
